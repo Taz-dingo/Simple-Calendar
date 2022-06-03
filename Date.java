@@ -28,9 +28,7 @@ public class Date {
             m = month;
         //蔡勒公式
         int w = y + y/4 + c/4 - 2*c + ( 26*(m+1) )/10 + d - 1;
-        if(w<0)
-            w = -w;
-        week = w%7;
+        week = (w%7 + 7)%7;
         return week;
     }
 
