@@ -31,7 +31,6 @@ public class Date {
         if(w<0)
             w = -w;
         week = w%7;
-//        System.out.println(c+" "+y+" "+m+" "+d);
         return week;
     }
 
@@ -45,10 +44,5 @@ public class Date {
 
     public int getYear(){
         return year;
-    }
-
-    public static void main(String[] args) {
-        Date test = new Date(10,1,2049);
-        System.out.println(test.getWeek());
     }
 }

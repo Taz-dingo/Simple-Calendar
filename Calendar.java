@@ -7,7 +7,6 @@ package Homework3_2;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Calendar {
     private HashMap<Integer,String> monthHashMap = new HashMap<Integer,String>();  //散列表：月份数->月份名
