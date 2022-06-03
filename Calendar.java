@@ -30,6 +30,14 @@ public class Calendar {
         monthHashMap.put(10,"October");
         monthHashMap.put(11,"November");
         monthHashMap.put(12,"December");
+        //星期对应的名称
+        weekHashMap.put(0,"Sunday");
+        weekHashMap.put(1,"Monday");
+        weekHashMap.put(2,"Tuesday");
+        weekHashMap.put(3,"Wednesday");
+        weekHashMap.put(4,"Thursday");
+        weekHashMap.put(5,"Friday");
+        weekHashMap.put(6,"Saturday");
         //31天的月份放入oddMonth集合
         oddMonth.add(1);
         oddMonth.add(3);
@@ -43,7 +51,7 @@ public class Calendar {
         evenMonth.add(6);
         evenMonth.add(9);
         evenMonth.add(11);
-        //
+
         for(int i = 1;i <= 12;i++){     //i表示月份
             int number = 0;
             if(oddMonth.contains(i))  //如果是大月，有31天
@@ -74,12 +82,11 @@ public class Calendar {
 
     public void printCalendar(){
         for(Date d : dates)
-            System.out.println(monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
+            System.out.println(weekHashMap.get(d.getWeek())+" "+monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
     }
 
     public static void main(String[] args) {
         Calendar calendarOf2008 = new Calendar(2008);
         calendarOf2008.printCalendar();
-
     }
 }
