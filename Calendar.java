@@ -1,6 +1,7 @@
 /**
  *要求编程输出2008年日历。日历中要求含有月份、日期与星期(如星期一和星期二等)。
  *然后统计并输出2008年日期的个位数与相应的星期恰好相同的总天数(例如：2000年9月1日恰好是星期一)。
+ * 注：这里用0对应星期日！
  */
 package Homework3_2;
 
@@ -73,9 +74,8 @@ public class Calendar {
     public boolean isLeapYear(int year){    //闰年判断
         boolean ret = false;
         //能被4整除且不能被100整除，或者能被400整除的
-        if( year%4 == 0 && year % 100 != 0 || year%400 == 0){
+        if( year%4 == 0 && year % 100 != 0 || year%400 == 0)
             ret = true;     //是闰年
-        }
         return ret;
     }
 
@@ -84,8 +84,25 @@ public class Calendar {
             System.out.println(weekHashMap.get(d.getWeek())+" "+monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
     }
 
+    public int countDay(){
+        int count = 0;
+        //如果日期的个位数等于星期数
+        for(Date d : dates) {
+            if (d.getDay() % 10 == d.getWeek()) {
+                count++;
+                System.out.println(weekHashMap.get(d.getWeek()) + " " + monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         Calendar calendarOf2008 = new Calendar(2008);
         calendarOf2008.printCalendar();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("日期个位数与星期恰好相同的有：");
+        System.out.println("共"+calendarOf2008.countDay()+"天");
     }
 }
