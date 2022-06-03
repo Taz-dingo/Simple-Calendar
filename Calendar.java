@@ -4,28 +4,32 @@
  */
 package Homework3_2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Calendar {
-    private HashMap<Integer,String> stringHashMap;  //整型->字符串散列表
-    private Set<Integer> oddMonth,evenMonth;    //大月、小月集合
-
+    private HashMap<Integer,String> monthHashMap = new HashMap<Integer,String>();  //散列表：月份数->月份名
+    private HashMap<Integer,String> weekHashMap = new HashMap<Integer,String>();    //散列表：星期数->星期名
+    private HashSet<Integer> oddMonth = new HashSet<Integer>();    //集合：大月
+    private HashSet<Integer> evenMonth = new HashSet<Integer>();    //集合：小月
+    private ArrayList<Date> dates = new ArrayList<Date>();  //集合：日期
 
     public Calendar(int year){  //根据年份生成日期
         //月份对应的名称
-        stringHashMap.put(1,"January");
-        stringHashMap.put(2,"February");
-        stringHashMap.put(3,"March");
-        stringHashMap.put(4,"April");
-        stringHashMap.put(5,"May");
-        stringHashMap.put(6,"June");
-        stringHashMap.put(7,"July");
-        stringHashMap.put(8,"August");
-        stringHashMap.put(9,"September");
-        stringHashMap.put(10,"October");
-        stringHashMap.put(11,"November");
-        stringHashMap.put(12,"December");
+        monthHashMap.put(1,"January");
+        monthHashMap.put(2,"February");
+        monthHashMap.put(3,"March");
+        monthHashMap.put(4,"April");
+        monthHashMap.put(5,"May");
+        monthHashMap.put(6,"June");
+        monthHashMap.put(7,"July");
+        monthHashMap.put(8,"August");
+        monthHashMap.put(9,"September");
+        monthHashMap.put(10,"October");
+        monthHashMap.put(11,"November");
+        monthHashMap.put(12,"December");
         //31天的月份放入oddMonth集合
         oddMonth.add(1);
         oddMonth.add(3);
@@ -39,11 +43,43 @@ public class Calendar {
         evenMonth.add(6);
         evenMonth.add(9);
         evenMonth.add(11);
-
+        //
         for(int i = 1;i <= 12;i++){     //i表示月份
-            if(oddMonth.contains(i)){   //如果月份31天
-                for
+            int number = 0;
+            if(oddMonth.contains(i))  //如果是大月，有31天
+                number = 31;
+            else if(evenMonth.contains((i)))  //如果是小月，有30天
+                number = 30;
+            else if(i == 2){   //如果是2月
+                if(isLeapYear(year))   //如果是闰年，有29天
+                    number = 29;
+                else
+                    number = 28;    //否则，有28天
+            }
+            //创建每一天的日期对象
+            for(int j = 1;j <= number;j++){
+                dates.add(new Date(i,j,year));
             }
         }
+    }
+
+    public boolean isLeapYear(int year){    //闰年判断
+        boolean ret = false;
+        //能被4整除且不能被100整除，或者能被400整除的
+        if( year%4 == 0 && year % 100 != 0 || year%400 == 0){
+            ret = true;     //是闰年
+        }
+        return ret;
+    }
+
+    public void printCalendar(){
+        for(Date d : dates)
+            System.out.println(monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
+    }
+
+    public static void main(String[] args) {
+        Calendar calendarOf2008 = new Calendar(2008);
+        calendarOf2008.printCalendar();
+
     }
 }
