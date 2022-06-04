@@ -14,4 +14,5 @@
 
 
 
-[^1]:雁塔菜农.[从菜农的“星期算法”到知道“蔡勒公式”后的感慨](https://mbb.eet-china.com/blog/1402669-225915.html)
+[^1]:蔡勒公式(December 13,2021).In *Wikipedia, the free encyclopedia*. Retrieved June 4, 2022, from [蔡勒公式](https://zh.wikipedia.org/zh-hk/%E8%94%A1%E5%8B%92%E5%85%AC%E5%BC%8F)
+
