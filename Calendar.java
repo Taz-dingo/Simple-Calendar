@@ -11,7 +11,7 @@ import java.util.HashSet;
 
 public class Calendar {
     private HashMap<Integer,String> monthHashMap = new HashMap<Integer,String>();  //散列表：月份数->月份名
-    private HashMap<Integer,String> weekHashMap = new HashMap<Integer,String>();    //散列表：星期数->星期名
+    private HashMap<Integer,String> weekNumHashMap = new HashMap<Integer,String>();    //散列表：星期数->星期名
     private HashSet<Integer> oddMonth = new HashSet<Integer>();    //集合：大月
     private HashSet<Integer> evenMonth = new HashSet<Integer>();    //集合：小月
     private ArrayList<Date> dates = new ArrayList<Date>();  //集合：日期
@@ -31,13 +31,13 @@ public class Calendar {
         monthHashMap.put(11,"November");
         monthHashMap.put(12,"December");
         //星期对应的名称
-        weekHashMap.put(0,"Sunday");
-        weekHashMap.put(1,"Monday");
-        weekHashMap.put(2,"Tuesday");
-        weekHashMap.put(3,"Wednesday");
-        weekHashMap.put(4,"Thursday");
-        weekHashMap.put(5,"Friday");
-        weekHashMap.put(6,"Saturday");
+        weekNumHashMap.put(0,"Sunday");
+        weekNumHashMap.put(1,"Monday");
+        weekNumHashMap.put(2,"Tuesday");
+        weekNumHashMap.put(3,"Wednesday");
+        weekNumHashMap.put(4,"Thursday");
+        weekNumHashMap.put(5,"Friday");
+        weekNumHashMap.put(6,"Saturday");
         //31天的月份放入oddMonth集合
         oddMonth.add(1);
         oddMonth.add(3);
@@ -81,23 +81,23 @@ public class Calendar {
 
     public void printCalendar(){
         for(Date d : dates)
-            System.out.println(weekHashMap.get(d.getWeek())+" "+monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
+            System.out.println(weekNumHashMap.get(d.getweekNum())+" "+monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
     }
 
     public int countDay(){
         int count = 0;
         //如果日期的个位数等于星期数
         for(Date d : dates) {
-            if (d.getDay() % 10 == d.getWeek()) {
+            if (d.getDay() % 10 == d.getweekNum()) {
                 count++;
-                System.out.println(weekHashMap.get(d.getWeek()) + " " + monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
+                System.out.println(weekNumHashMap.get(d.getweekNum()) + " " + monthHashMap.get(d.getMonth()) + "," + d.getDay() + " " + d.getYear());
             }
         }
         return count;
     }
 
     public static void main(String[] args) {
-        Calendar calendarOf2008 = new Calendar(2008);
+        Calendar calendarOf2008 = new Calendar(1);
         calendarOf2008.printCalendar();
         System.out.println();
         System.out.println();
